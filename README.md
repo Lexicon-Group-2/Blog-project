@@ -15,6 +15,7 @@
 - [ ] Group some users into a staff group.
 - [ ] Apply some css to the blog. Either use display: flex or display: grid... both should work fine.
 - [ ] Make a clear separation between blogs. For instance, each blog should be within certain background color, separated from the body bacground.
+- [ ] Perhaps for this page create a fixed side menu (as Sara did for our previous project) which will contain all the titles for the posts. A good option would be to add a **overflow-y: auto** (it will create a scroll only when needed) and also **overflow-x: hidden**.
 
 ### **detail_view.html:**
 

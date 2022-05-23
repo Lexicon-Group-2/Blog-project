@@ -1,0 +1,17 @@
+{% extends "blog/base.html" %}
+{% load staticfiles %}
+
+{% block title %}Profile Page{% endblock title %}
+
+{% block body_block %}
+
+<div class="jumbotron">
+
+  <h1>Welcome back!</h1>
+  <br>
+  <h4>Your username: <b>{{user.username}}</b></h4>
+  <h4>Your email address: {{ user.email }}</h4>
+
+  
+</div>
+{% endblock %}

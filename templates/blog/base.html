@@ -21,16 +21,6 @@
         <li class="nav-item">
           <a class="nav-link" href="{% url 'register' %}">Register</a>
         </li>
-
-        
-        {% if user.is_authenticated %}
-          <!-- <li class="nav-item active"></li><a class="nav-link" href="{% url 'user' %}">My page</a></li>
-          <li></li> -->
-          
-        {% else %}
-          <li class="nav-item"></li><a class="nav-link" href="{% url 'user_login' %}">Login</a></li>
-        {% endif %}
-        
         
           <!-- blog:user_login -->
         
@@ -39,8 +29,10 @@
       
       {% if user.is_authenticated %}
       <div>Logged in as: </div>
-      </li><a class="logout nav-link" href="{% url 'user' %}"><b>{{user.username}}</b></a>
-      </li><a class="logout nav-link" href="{% url 'logout' %}">Logout</a>
+      <a class="logout nav-link" href="{% url 'user' %}"><b>{{user.username}}</b></a>
+      <a class="logout nav-link" href="{% url 'logout' %}">Logout</a>
+      {% else %}
+      <a class="logout nav-link" href="{% url 'user_login' %}">Login</a></li>
       {% endif %}
       
     </div>

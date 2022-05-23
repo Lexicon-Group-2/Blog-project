@@ -100,7 +100,7 @@ def post_detail(request, slug):
       comment = form.save(commit=False)
       comment.post = post
       comment.save()
-
+      
       return redirect('post_detail', slug=post.slug)
   else:
     form = CommentForm()

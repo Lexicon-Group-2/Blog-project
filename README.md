@@ -21,6 +21,7 @@
 - [ ] Whole this page needs a lot of css.
 - [ ] So far anibody with an email can make a comment. Change it so that only registered users can comment a post.
 - [ ] Make a button and add an eventListener with JS to show the form in which user can make a comment. By default the form should be hidden.
+- [ ] Make a custom comment page instead of this django default thing. Similar as we did for the login page.
 
 ### **login.html**
 
@@ -36,4 +37,9 @@
 
 - [ ] This is the personal page for each user.
 - [ ] In this page show each comment that a logged in user has made.
-- [ ] Add a functionality to update or delete the comment. To be honest, have no idea how to do it, but will figure it out.
+- [ ] Add a functionality to update or delete the comment. To be honest, have no idea how to do it, but will figure it out. Perhaps a good start would be [here](https://www.geeksforgeeks.org/django-crud-create-retrieve-update-delete-function-based-views/).
+
+### **models.py**
+
+- [ ] slug should be equal to some random string of letters with certain length. This is because person can't guess it and thus read the post even it they are not logged in.
+- [ ] Write a function which will generate random string of letter.

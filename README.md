@@ -13,7 +13,7 @@
 
 - [ ] Untill now the only way to make a blog post is to do it within django admin/ gui. Change it so that say users within staff group can make a blog post.
 - [ ] Group some users into a staff group.
-- [ ] Apply some css to the blog. Either use displa: flex or display: grid... both should work fine.
+- [ ] Apply some css to the blog. Either use display: flex or display: grid... both should work fine.
 - [ ] Make a clear separation between blogs. For instance, each blog should be within certain background color, separated from the body bacground.
 
 ### **detail_view.html:**

@@ -1,0 +1,37 @@
+{% extends "blog/base.html" %}
+
+{% block body_block %}
+
+
+<div class="container">
+  <div class="post block">
+    <h2 class="subtitle">Title: {{post.title}}</h2>
+    <h4>Date added: {{post.date_added}}</h4>
+    <h4>Intro: {{post.intro}}</h4>
+    <h4>Body: {{post.body}}</h4>
+
+  </div>
+</div>
+
+<hr>
+
+<!-- Make a button and add an eventListener with JS to show the form bellow -->
+<h2 class="comment">Add a comment</h2>
+
+<form method="POST" action=".">
+  {% csrf_token %}
+
+  {{ form.as_p }}
+
+  <div class="field">
+    <div class="control">
+      <button class="btn btn-success">Submit</button>
+    </div>
+  </div>
+  
+
+
+</form>
+
+
+{% endblock %}

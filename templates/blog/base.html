@@ -15,8 +15,13 @@
           <a class="nav-link" href="{% url 'admin:index' %}">Admin</a>
         </li>
         <li class="nav-item">
+          <a class="nav-link" href="{% url 'blog' %}">Blog</a>
+        </li>
+
+        <li class="nav-item">
           <a class="nav-link" href="{% url 'register' %}">Register</a>
         </li>
+
         
         {% if user.is_authenticated %}
           <!-- <li class="nav-item active"></li><a class="nav-link" href="{% url 'user' %}">My page</a></li>

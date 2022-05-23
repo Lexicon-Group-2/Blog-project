@@ -1,20 +1,19 @@
 from multiprocessing import AuthenticationError
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from numpy import true_divide
-from blog.forms import UserForm, UserProfileInfoForm
+from blog.forms import UserForm, UserProfileInfoForm, CommentForm
 from django.contrib.auth.forms import AuthenticationForm
-# Create your views here.
-
-#from django.core.urlresolvers import reverse
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 
 from django.http import HttpResponse, HttpResponseRedirect
 
+from blog.models import Post
 
 def index(request):
   return render(request, 'blog/index.html')
+
 
 def register(request):
 
@@ -51,23 +50,6 @@ def register(request):
     'registered': registered
   })
 
-
-# def login(request):
-#   #return render(request, 'blog/login.html')
-
-#   if request.method == 'POST':
-#     form = AuthenticationForm(data = request.POST)
-#     if form.is_valid():
-#       # log in the user
-#       print("it is ok")
-#       return HttpResponseRedirect('/user/')
-#   else:
-#     form = AuthenticationForm()
-
-#   return render(request, 'blog/login.html', 
-#   {'form': form})
-
-
 def user_login(request):
   if request.method == 'POST':
     username = request.POST.get('username')
@@ -99,4 +81,32 @@ def user(request):
 def user_logout(request):
   logout(request)
   return HttpResponseRedirect(reverse('index'))
+
+
+def blog(request):
+  posts = Post.objects.all()
+  return render(request, 'blog/blog.html', {'posts': posts})
+
+def post_detail(request, slug):
+  post = Post.objects.get(slug=slug)
+
+  # check if the method is POST
+  if request.method == 'POST':
+
+    # get all the data from the form
+    form = CommentForm(request.POST)
+
+    if form.is_valid():
+      comment = form.save(commit=False)
+      comment.post = post
+      comment.save()
+
+      return redirect('post_detail', slug=post.slug)
+  else:
+    form = CommentForm()
+    
+  return render(request, 'blog/post_detail.html', {'post': post, 'form': form})
+
+def login_page(request):
+  return render(request, 'blog/login.html')
 

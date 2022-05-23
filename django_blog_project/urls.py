@@ -19,12 +19,13 @@ from blog import views
 
 urlpatterns = [
     path('', views.index, name="index"),
-    #path('blog/', include('blog.urls')),
     path('register/', views.register, name='register'),
-    #path('login/', views.user_login, name='login'),
     path('user/', views.user, name='user'),
     path('admin/', admin.site.urls),
     path('logout/', views.user_logout, name="logout"),
     path('special/', views.user_logout, name="special"),
     path('login/', views.user_login, name="user_login"),
+    path('login/', views.login_page, name="login_page"),
+    path('blog/', views.blog, name="blog"),
+    path('<slug:slug>/', views.post_detail, name="post_detail"),
 ]

@@ -37,6 +37,7 @@
 ### **user.html**
 
 - [ ] This is the personal page for each user.
+
 - [ ] In this page show each comment that a logged in user has made.
 - [ ] Add a functionality to update or delete the comment. To be honest, have no idea how to do it, but will figure it out. Perhaps a good start would be [here](https://www.geeksforgeeks.org/django-crud-create-retrieve-update-delete-function-based-views/).
 

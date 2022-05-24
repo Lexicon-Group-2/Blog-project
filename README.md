@@ -17,12 +17,12 @@
 - [ ] Make a clear separation between blogs. For instance, each blog should be within certain background color, separated from the body bacground.
 - [ ] Perhaps for this page create a fixed side menu (as Sara did for our previous project) which will contain all the titles for the posts. A good option would be to add a **overflow-y: auto** (it will create a scroll only when needed) and also **overflow-x: hidden**.
 
-### **detail_view.html:**
+### **post_detail.html:**
 
 - [ ] Whole this page needs a lot of css.
-- [ ] So far anybody with an email can make a comment. Change it so that only registered users can comment a post.
-- [ ] Make a button and add an eventListener with JS to show the form in which user can make a comment. By default the form should be hidden.
-- [ ] Make a custom comment page instead of this django default thing. Similar as we did for the login page.
+- [x] So far anybody with an email can make a comment. Change it so that only registered users can comment a post.
+- [x] Make a button and add an eventListener with JS to show the form in which user can make a comment. By default the form should be hidden.
+- [x] Make a custom comment form instead of this django default thing. Similar as we did for the login page.
 
 ### **login.html**
 

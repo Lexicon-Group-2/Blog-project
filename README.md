@@ -27,7 +27,7 @@
 ### **login.html**
 
 - [ ] Apply some css to the login form.
-- [ ] Perhaps center the login form to he showed in the center of the screen (horizontally) with some margin-top to give a space between the form and the navbar. Another option is to use display: flex with additional options justify-content and align, to align center everything inside a div container.
+- [ ] Perhaps center the login form to be showed in the center of the screen (horizontally) with some margin-top to give a space between the form and the navbar. Another option is to use display: flex with additional options justify-content and align, to align center everything inside a div container.
 
 ### **registration.html**
 

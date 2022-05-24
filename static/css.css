@@ -69,7 +69,7 @@
   font-size: 1.5rem;
 }
 
-.submit-comment:hover {
+.submit-comment:hover:enabled {
   background: palegreen;
   color: black;
 }

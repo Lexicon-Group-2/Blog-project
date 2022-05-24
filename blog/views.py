@@ -8,7 +8,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 
 from django.http import HttpResponse, HttpResponseRedirect
-
+from django.contrib.auth.models import User
 from blog.models import Post, Comment
 
 def index(request):
@@ -93,18 +93,19 @@ def login_page(request):
 
 
 def post_detail(request, slug):
+  form = CommentForm()
   post  = Post.objects.get(slug=slug)
-  name  = request.POST.get('name')
-  email = request.POST.get('email')
-  body  = request.POST.get('body')
-
+  name  = request.user
+  body  = str(request.POST.get('body'))
+  
+  user  = User.objects.get(id=name.id)
+  email = user.email
+  
   if request.method == 'POST':
-    if len(body) >= 20:
-      comment = Comment(post=post, name=name, email=email, body=body)
-      comment.save()
-      return redirect('post_detail', slug=post.slug)
-    else:
-      return HttpResponse('Your comment was too short!')
+    comment = Comment(post=post, name=name, email=email, body=body)
+    comment.save()
+    return redirect('post_detail', slug=post.slug)
+    
   else:
     form = CommentForm()
     

@@ -20,14 +20,14 @@
 ### **detail_view.html:**
 
 - [ ] Whole this page needs a lot of css.
-- [ ] So far anibody with an email can make a comment. Change it so that only registered users can comment a post.
+- [ ] So far anybody with an email can make a comment. Change it so that only registered users can comment a post.
 - [ ] Make a button and add an eventListener with JS to show the form in which user can make a comment. By default the form should be hidden.
 - [ ] Make a custom comment page instead of this django default thing. Similar as we did for the login page.
 
 ### **login.html**
 
 - [ ] Apply some css to the login form.
-- [ ] Perhaps center the login form to he showed in the center of the screen (horizontally) with some margin-top to give a space between the form and the navbar.
+- [ ] Perhaps center the login form to he showed in the center of the screen (horizontally) with some margin-top to give a space between the form and the navbar. Another option is to use display: flex with additional options justify-content and align, to align center everything inside a div container.
 
 ### **registration.html**
 

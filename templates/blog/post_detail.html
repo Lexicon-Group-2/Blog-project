@@ -16,8 +16,22 @@
 <hr>
 
 <!-- Make a button and add an eventListener with JS to show the form bellow -->
-<h2 class="comment">Add a comment</h2>
 
+{% for comment in post.comments.all %}
+
+  <div class="comment">
+    <div class="comment-user">{{comment.name}}</div>
+    <div class="comment-user">{{comment.date_added}}</div>
+    <div class="comment-body">{{comment.body}}</div>
+  </div>
+  <hr>
+{% empty %}
+  <h2 class="no-comments-yet">This post have no comments.</h2>
+  <hr>
+{% endfor %}
+
+<!-- <h2 class="add-a-comment">Add a comment</h2>
+<hr>
 <form method="POST" action=".">
   {% csrf_token %}
 
@@ -28,10 +42,33 @@
       <button class="btn btn-success">Submit</button>
     </div>
   </div>
+</form> -->
+
+<br><br><br>
+<h2 class="add-a-comment">We will be using the following form instead. First have to write certain things in the
+  views.py file.</h2>
+<hr>
+<form method="POST" action=".">
+  {% csrf_token %}
   
+  <label for="name">Name</label>
+  <input type="text" name="name" placeholder="Enter your name">
 
+  <br>
+  <label for="email">Email:</label>
+  <input type="email" name="email" placeholder="email@domain.com">
 
-</form>
+  <br>
+  <label for="body">Comment:</label>
+  <textarea name="body" rows="3" cols="40" placeholder="Write your comment here."></textarea>
 
+  <div class="field">
+    <div class="control">
+      <button class="btn btn-success">Submit</button>
+    </div>
+  </div>
 
 {% endblock %}
+
+
+

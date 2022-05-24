@@ -9,7 +9,7 @@ from django.contrib.auth import authenticate, login, logout
 
 from django.http import HttpResponse, HttpResponseRedirect
 
-from blog.models import Post
+from blog.models import Post, Comment
 
 def index(request):
   return render(request, 'blog/index.html')
@@ -57,7 +57,7 @@ def user_login(request):
 
     # use django authentication function
     user = authenticate(username=username, password=password)
-
+    
     # check if user passed the authentication process
     if user:
       if user.is_active:
@@ -87,14 +87,12 @@ def blog(request):
   posts = Post.objects.all()
   return render(request, 'blog/blog.html', {'posts': posts})
 
-def post_detail(request, slug):
+def post_detail22(request, slug):
   post = Post.objects.get(slug=slug)
-
   # check if the method is POST
   if request.method == 'POST':
-
-    # get all the data from the form
     form = CommentForm(request.POST)
+    print(form)
 
     if form.is_valid():
       comment = form.save(commit=False)
@@ -110,3 +108,23 @@ def post_detail(request, slug):
 def login_page(request):
   return render(request, 'blog/login.html')
 
+
+
+
+########
+def post_detail(request, slug):
+  post = Post.objects.get(slug=slug)
+  if request.method == 'POST':
+    comment = Comment(
+        post  = post,
+        name  = request.POST.get('name'),
+        email = request.POST.get('email'),
+        body  = request.POST.get('body')
+    )
+    comment.save()
+    
+    return redirect('post_detail', slug=post.slug)
+  else:
+    form = CommentForm()
+    
+  return render(request, 'blog/post_detail.html', {'post': post, 'form': form})

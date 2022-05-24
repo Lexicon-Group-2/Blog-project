@@ -8,11 +8,11 @@
     </div>
 
     <!-- This was only to test something. Will use it later on. -->
-    {% if user.username == 'bojan' %}
+    <!-- {% if user.username == 'bojan' %}
       <h1>Welcome bojan</h1>
     {% else %}
       <h1>{{user.username}}</h1>
-    {% endif %}
+    {% endif %} -->
 
     <div class="container">
       {% for post in posts %}
@@ -20,7 +20,7 @@
           <h2 class="subtitle">Title: {{post.title}}</h2>
           <h4>Date added: {{post.date_added}}</h4>
           <h4>Intro: {{post.intro}}</h4>
-          <h4>Body: {{post.body}}</h4>
+          <!-- <h4>Body: {{post.body}}</h4> -->
           
           {% if user.is_authenticated %}
             <a href="{% url 'post_detail' post.slug %}">Read more</a>

@@ -27,7 +27,7 @@
 ### **login.html**
 
 - [ ] Apply some css to the login form.
-- [ ] Perhaps center the login form to be showed in the center of the screen (horizontally) with some margin-top to give a space between the form and the navbar. Another option is to use display: flex with additional options justify-content and align, to align center everything inside a div container.
+- [ ] Perhaps position the login form in the center of the screen (horizontally) with some margin-top to give a space between the form and the navbar. Another option is to use display: flex with additional options justify-content and align, to align center everything inside a div container.
 
 ### **registration.html**
 
@@ -38,7 +38,7 @@
 
 - [ ] This is the personal page for each user.
 
-- [ ] In this page show each comment that a logged in user has made.
+- [ ] In this page show each comment that a logged-in user has made.
 - [ ] Add a functionality to update or delete the comment. To be honest, have no idea how to do it, but will figure it out. Perhaps a good start would be [here](https://www.geeksforgeeks.org/django-crud-create-retrieve-update-delete-function-based-views/).
 
 ### **models.py**

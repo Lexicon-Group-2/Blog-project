@@ -1,7 +1,6 @@
 {% extends "blog/base.html" %}
-
+{% load staticfiles %}
 {% block body_block %}
-
 
 <div class="container">
   <div class="post block">
@@ -9,17 +8,43 @@
     <h4>Date added: {{post.date_added}}</h4>
     <h4>Intro: {{post.intro}}</h4>
     <h4>Body: {{post.body}}</h4>
-
   </div>
 </div>
 
 <hr>
 
-<!-- Make a button and add an eventListener with JS to show the form bellow -->
+<button class="show-hide-comment-form" onclick="showHideForm()">Comment This post</button>
 
+<hr>
+<div id="#comment-form" class="comment-form" style="display:none">
+  <div class="form-container">
+    <h2 class="add-a-comment">Add a comment</h2>
+    <hr>
+    <form method="POST" action=".">
+      {% csrf_token %}
+
+      <div class="form-label-and-input">
+        <label class="label" for="name">User name:</label>
+        <input class="field field-disabled" type="text" name="name" value="{{user.username}}" disabled placeholder="Enter your name">
+
+        <br>
+        <label class="label" for="email">Email:</label>
+        <input class="field field-disabled" disabled value="{{user.email}}" type="email" name="email" placeholder="email@domain.com">
+
+        <br>
+        <label class="label" for="body">Comment:</label>
+        <textarea class="field" name="body" rows="4" cols="40" placeholder="Your comment should be minimum 20 characters long."></textarea>
+
+      </div>
+      <button class="btn btn-success submit-comment" onclick="hideForm()">Submit</button>
+    </form>
+  </div>
+</div>
+
+<br>
 {% for comment in post.comments.all %}
-
   <div class="comment">
+    <div class="comment-counter">{{forloop.counter}}</div>
     <div class="comment-user">{{comment.name}}</div>
     <div class="comment-user">{{comment.date_added}}</div>
     <div class="comment-body">{{comment.body}}</div>
@@ -30,44 +55,7 @@
   <hr>
 {% endfor %}
 
-<!-- <h2 class="add-a-comment">Add a comment</h2>
-<hr>
-<form method="POST" action=".">
-  {% csrf_token %}
-
-  {{ form.as_p }}
-
-  <div class="field">
-    <div class="control">
-      <button class="btn btn-success">Submit</button>
-    </div>
-  </div>
-</form> -->
-
-<br><br><br>
-<h2 class="add-a-comment">We will be using the following form instead. First have to write certain things in the
-  views.py file.</h2>
-<hr>
-<form method="POST" action=".">
-  {% csrf_token %}
-  
-  <label for="name">Name</label>
-  <input type="text" name="name" placeholder="Enter your name">
-
-  <br>
-  <label for="email">Email:</label>
-  <input type="email" name="email" placeholder="email@domain.com">
-
-  <br>
-  <label for="body">Comment:</label>
-  <textarea name="body" rows="3" cols="40" placeholder="Write your comment here."></textarea>
-
-  <div class="field">
-    <div class="control">
-      <button class="btn btn-success">Submit</button>
-    </div>
-  </div>
-
+<script src="{% static '/script.js' %}"></script>
 {% endblock %}
 
 

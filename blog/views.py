@@ -87,43 +87,24 @@ def blog(request):
   posts = Post.objects.all()
   return render(request, 'blog/blog.html', {'posts': posts})
 
-def post_detail22(request, slug):
-  post = Post.objects.get(slug=slug)
-  # check if the method is POST
-  if request.method == 'POST':
-    form = CommentForm(request.POST)
-    print(form)
-
-    if form.is_valid():
-      comment = form.save(commit=False)
-      comment.post = post
-      comment.save()
-      
-      return redirect('post_detail', slug=post.slug)
-  else:
-    form = CommentForm()
-    
-  return render(request, 'blog/post_detail.html', {'post': post, 'form': form})
-
 def login_page(request):
   return render(request, 'blog/login.html')
 
 
 
-
-########
 def post_detail(request, slug):
-  post = Post.objects.get(slug=slug)
+  post  = Post.objects.get(slug=slug)
+  name  = request.POST.get('name')
+  email = request.POST.get('email')
+  body  = request.POST.get('body')
+
   if request.method == 'POST':
-    comment = Comment(
-        post  = post,
-        name  = request.POST.get('name'),
-        email = request.POST.get('email'),
-        body  = request.POST.get('body')
-    )
-    comment.save()
-    
-    return redirect('post_detail', slug=post.slug)
+    if len(body) >= 20:
+      comment = Comment(post=post, name=name, email=email, body=body)
+      comment.save()
+      return redirect('post_detail', slug=post.slug)
+    else:
+      return HttpResponse('Your comment was too short!')
   else:
     form = CommentForm()
     

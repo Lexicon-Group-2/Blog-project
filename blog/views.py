@@ -90,13 +90,11 @@ def post_detail(request, slug):
   form  = CommentForm()
   post  = Post.objects.get(slug=slug)
   name  = request.user
-  body  = str(request.POST.get('body'))
-
+  body  = request.POST.get('body')
   user  = User.objects.get(id=name.id)
-  email = user.email
   
   if request.method == 'POST':
-    comment = Comment(post=post, name=name, email=email, body=body)
+    comment = Comment(post=post, name=name, body=body)
     comment.save()
     return redirect('post_detail', slug=post.slug)
     

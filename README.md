@@ -20,6 +20,7 @@
 ### **post_detail.html:**
 
 - [ ] Whole this page needs a lot of css.
+- [ ] Add css to the comments. Each comment should have their own field (div with some background). Nicelly visualise username and date_added fields with comment field bellow. Perhaps check some of the bootstrap comment boxes.
 - [x] So far anybody with an email can make a comment. Change it so that only registered users can comment a post.
 - [x] Make a button and add an eventListener with JS to show the form in which user can make a comment. By default the form should be hidden.
 - [x] Make a custom comment form instead of this django default thing. Similar as we did for the login page.

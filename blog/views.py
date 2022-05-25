@@ -1,19 +1,17 @@
 from multiprocessing import AuthenticationError
 from django.shortcuts import render, redirect
-from numpy import true_divide
 from blog.forms import UserForm, UserProfileInfoForm, CommentForm
-from django.contrib.auth.forms import AuthenticationForm
-from django.urls import reverse
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import authenticate, login, logout
-
-from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.models import User
+from django.http import HttpResponse, HttpResponseRedirect
 from blog.models import Post, Comment
+from django.urls import reverse
+#from numpy import true_divide
 
 def index(request):
   return render(request, 'blog/index.html')
-
 
 def register(request):
 
@@ -33,9 +31,7 @@ def register(request):
 
       if 'profile_pic' in request.FILES:
         profile.profile_pic = request.FILES['profile_pic']
-        
         profile.save()
-        #return HttpResponseRedirect('/thankyou/')
         
       registered = True
     else:
@@ -54,7 +50,7 @@ def user_login(request):
   if request.method == 'POST':
     username = request.POST.get('username')
     password = request.POST.get('password')
-
+    
     # use django authentication function
     user = authenticate(username=username, password=password)
     
@@ -66,8 +62,6 @@ def user_login(request):
       else:
         return HttpResponse("Account not active")
     else:
-      print("Someone tried to login and failed!")
-      print("Username: %s and password:  %s" % (username, password))
       return HttpResponse("Invalid login details!")
   
   return render(request, 'blog/login.html', {})
@@ -93,11 +87,11 @@ def login_page(request):
 
 
 def post_detail(request, slug):
-  form = CommentForm()
+  form  = CommentForm()
   post  = Post.objects.get(slug=slug)
   name  = request.user
   body  = str(request.POST.get('body'))
-  
+
   user  = User.objects.get(id=name.id)
   email = user.email
   

@@ -59,6 +59,7 @@ a {
   -ms-flex-direction: column;
   flex-direction: column;
 }
+
 .loginbackground-gridContainer {
   display: -ms-grid;
   display: grid;
@@ -236,3 +237,4 @@ a.ssolink {
     transform: translateX(0px);
   }
 }
+

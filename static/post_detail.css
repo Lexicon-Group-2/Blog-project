@@ -1,21 +1,22 @@
-.logout {
-  color: grey;
-}
-
-.active {
-  color: rebeccapurple;
-}
-
-
-
 
 /* STYLE post_detail.html */
 .show-hide-comment-form {
   width: 200px;
+  font-size: 1.2rem;
+  color: black;
   padding: 10px;
   background: palegreen;
   border: 1px solid grey;
   border-radius: 5px;
+}
+
+.show-hide-comment-form:hover {
+  color: white;
+}
+
+.formbg {
+  font-size: 1.1rem;
+  padding: 0;
 }
 
 .comment-form {
@@ -28,14 +29,8 @@
 }
 
 .form-container {
-  background: rgb(227, 227, 227);
-  border: 1px solid rgb(188, 185, 185);
-  border-radius: 5px;
   width: 500px;
-  padding: 10px;
-  box-shadow:
-    5px 5px 20px rgba(0, 0, 0, 0.3),
-    -5px 5px 20px rgba(0, 0, 0, 0.3);
+  padding: 0px;
 }
 
 .form-label-and-input {
@@ -49,13 +44,22 @@
   margin: 0;
 }
 
+.comment-label {
+  margin-top: 10px;
+}
+
 .add-a-comment {
+  font-size: 1.4rem;
   width: 100%;
   text-align: center;
 }
 
+.comment-field {
+  width: 100%;
+  text-align: left;
+}
+
 .field-disabled {
-  background: rgb(242, 240, 240);
   margin-bottom: -15px;
 }
 
@@ -65,9 +69,9 @@
 }
 
 .submit-comment {
-  margin-top: 10px;
-  width: 100%;
-  font-size: 1.5rem;
+  margin: 10px 12px 0 12px;
+  width: 94%;
+  font-size: 1.4rem;
   cursor: not-allowed;
 }
 

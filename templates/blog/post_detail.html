@@ -1,7 +1,10 @@
 {% extends "blog/base.html" %} {% load staticfiles %} {% block body_block %}
 
+<link rel="stylesheet" href="{% static 'post_detail.css' %}">
+
 <div class="container">
   <div class="post block">
+    <h2 class="post-author">Author: {{post.user}}</h2>
     <h2 class="subtitle">Title: {{post.title}}</h2>
     <h4>Date added: {{post.date_added}}</h4>
     <h4>Intro: {{post.intro}}</h4>
@@ -11,7 +14,7 @@
 
 <hr />
 
-<button class="show-hide-comment-form btn btn-success " onclick="showHideForm()">
+<button class="btn btn-success show-hide-comment-form" onclick="showHideForm()">
   Comment This post
 </button>
 
@@ -21,10 +24,10 @@
   <div class="formbg-outer">
     <div class="formbg">
       <div class="formbg-inner padding-horizontal--48">
-        <span class="padding-bottom--15">Add Comment</span>
+        <span class="padding-bottom--15 add-a-comment">Add Comment</span>
 
         <form method="POST" enctype="multipart/form-data" id="stripe-login">
-          <div class="field padding-bottom--24">
+          <div class="padding-bottom--24 field">
             {% csrf_token %}   <label for="name">User name:</label>
             <input
              
@@ -37,13 +40,12 @@
     
     
             <br />
-            <label for="body">Comment:</label>
-            <textarea
+            <label class="comment-label" for="body">Comment:</label>
+            <textarea class="comment-field"
               id="post-comment"
-              
               name="body"
               rows="4"
-              cols="40"
+              cols="50"
               placeholder="Your comment should be minimum 20 characters long."
             ></textarea>
           </div>

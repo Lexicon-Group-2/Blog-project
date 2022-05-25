@@ -32,7 +32,7 @@ var submitBtn = getByClass('submit-comment')[0],
 submitBtn.disabled = true
 
 // add an event Listener for the change of the input field
-comment.addEventListener( 'change', () => {
+comment.addEventListener('change', () => {
   len = comment.value.length
   if (len < 20) {
     submitBtn.disabled = true

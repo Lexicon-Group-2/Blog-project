@@ -1,3 +1,10 @@
+.logout {
+  color: grey;
+}
+
+.active {
+  color: rebeccapurple;
+}
 * {
   padding: 0;
   margin: 0;
@@ -104,15 +111,6 @@ a {
 .flex-justifyContent--center {
   -ms-flex-pack: center;
   justify-content: center;
-.form-container {
-  background: rgb(227, 227, 227);
-  border: 1px solid rgb(188, 185, 185);
-  border-radius: 5px;
-  width: 500px;
-  padding: 10px;
-  box-shadow:
-  5px 5px 20px rgba(0, 0, 0, 0.3),
-  -5px 5px 20px rgba(0, 0, 0, 0.3);
 }
 
 .formbg {

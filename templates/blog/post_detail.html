@@ -1,6 +1,4 @@
-{% extends "blog/base.html" %}
-{% load staticfiles %}
-{% block body_block %}
+{% extends "blog/base.html" %} {% load staticfiles %} {% block body_block %}
 
 <div class="container">
   <div class="post block">
@@ -11,52 +9,79 @@
   </div>
 </div>
 
-<hr>
+<hr />
 
-<button class="show-hide-comment-form" onclick="showHideForm()">Comment This post</button>
+<button class="show-hide-comment-form" onclick="showHideForm()">
+  Comment This post
+</button>
 
-<hr>
-<div id="#comment-form" class="comment-form" style="display:none">
+<hr />
+<div id="#comment-form" class="comment-form" style="display: none">
   <div class="form-container">
-    <h2 class="add-a-comment">Add a comment</h2>
-    <hr>
-    <form method="POST" action=".">
-      {% csrf_token %}
+  <div class="formbg-outer">
+    <div class="formbg">
+      <div class="formbg-inner padding-horizontal--48">
+        <span class="padding-bottom--15">Add Comment</span>
 
-      <div class="form-label-and-input">
-        <label class="label" for="name">User name:</label>
-        <input class="field field-disabled" type="text" name="name" value="{{user.username}}" disabled placeholder="Enter your name">
+        <form method="POST" enctype="multipart/form-data" id="stripe-login">
+          <div class="field padding-bottom--24">
+            {% csrf_token %}   <label for="name">User name:</label>
+            <input
+             
+              type="text"
+              name="name"
+              value="{{user.username}}"
+              disabled
+              placeholder="Enter your name"
+            />
+    
+            <br />
+            <label  for="email">Email:</label>
+            <input
+          
+              disabled
+              value="{{user.email}}"
+              type="email"
+              name="email"
+              placeholder="email@domain.com"
+            />
+    
+            <br />
+            <label for="body">Comment:</label>
+            <textarea
+              id="post-comment"
+              
+              name="body"
+              rows="4"
+              cols="40"
+              placeholder="Your comment should be minimum 20 characters long."
+            ></textarea>
+          </div>
+          <button class="btn btn-success submit-comment" onclick="hideForm()">
+            Comment
+          </button>
 
-        <br>
-        <label class="label" for="email">Email:</label>
-        <input class="field field-disabled" disabled value="{{user.email}}" type="email" name="email" placeholder="email@domain.com">
-
-        <br>
-        <label class="label" for="body">Comment:</label>
-        <textarea id="post-comment" class="field" name="body" rows="4" cols="40" placeholder="Your comment should be minimum 20 characters long."></textarea>
-
+          </div>
+        </form>
       </div>
-      <button class="btn btn-success submit-comment" onclick="hideForm()">Submit</button>
-    </form>
+    </div>
   </div>
 </div>
 
-<br>
+<br />
 {% for comment in post.comments.all %}
-  <div class="comment">
-    <div class="comment-counter">{{forloop.counter}}</div>
-    <div class="comment-user">{{comment.name}}</div>
-    <div class="comment-user">{{comment.date_added}}</div>
-    <div class="comment-body">{{comment.body}}</div>
-  </div>
-  <hr>
+<div class="comment">
+  <div class="comment-counter">{{forloop.counter}}</div>
+  <div class="comment-user">{{comment.name}}</div>
+  <div class="comment-user">{{comment.date_added}}</div>
+  <div class="comment-body">{{comment.body}}</div>
+</div>
+<hr />
 {% empty %}
-  <h2 class="no-comments-yet">This post have no comments.</h2>
-  <hr>
+<h2 class="no-comments-yet">This post have no comments.</h2>
+<hr />
 {% endfor %}
 
 <script src="{% static '/script.js' %}"></script>
 {% endblock %}
-
-
-
+</div>

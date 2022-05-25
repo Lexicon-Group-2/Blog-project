@@ -7,7 +7,7 @@
 
 ### **navbar**
 
-- [ ] Change link 'admin/' to be visible only to the users with **superuser** credentials.
+- [x] Change link 'admin/' to be visible only to the users with **superuser** credentials.
 
 ### **blog.html**
 

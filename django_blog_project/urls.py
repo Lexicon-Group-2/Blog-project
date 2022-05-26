@@ -31,8 +31,6 @@ urlpatterns = [
     path('login/', views.login_page, name="login_page"),
     path('blog/', views.blog, name="blog"),
     path('<slug:slug>/', views.post_detail, name="post_detail"),
-    #path('postId-<int:id>/', views.delete_post, name="delete_post"),
-    #path('<post_id>',views.delete_post,name='delete_post'),
     path('<post_id>',views.delete_post,name='delete_post'),
 ]
 

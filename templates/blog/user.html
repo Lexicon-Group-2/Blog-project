@@ -3,6 +3,7 @@
 {% block title %}{{user.username}}{% endblock title %}
 
 {% block head_block %}
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="{% static 'user.css' %}">
 {% endblock %}
 
@@ -36,8 +37,14 @@
     <div class="post-date">
       <div>{{post.date_added}}</div>
       <div class="action">
+        <!-- update icon -->
         <a href="">update</a>
-        <a href="">delete</a>
+        <!-- delete icon -->
+        <a href="{% url 'delete_post' post.id %}">
+          <button class="btn btn-delete">
+            <i class="fa fa-trash-o"></i>
+          </button>
+        </a>
       </div>
     </div>
     <div class="post-title">Title: <i>{{post.title}}</i></div>

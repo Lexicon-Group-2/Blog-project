@@ -1,6 +1,6 @@
 from multiprocessing import AuthenticationError
-from django.shortcuts import render, redirect
-from blog.forms import UserForm, UserProfileInfoForm, CommentForm
+from django.shortcuts import get_object_or_404, render, redirect
+from blog.forms import UserForm, UserProfileInfoForm, CommentForm, PostForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import authenticate, login, logout
@@ -100,13 +100,17 @@ def post_detail(request, slug):
   return render(request, 'blog/post_detail.html', {'post': post, 'form': form})
 
 
-
-
 @login_required
 def user(request):
   profile = UserProfileInfo.objects.filter(user=request.user)
   posts = Post.objects.all().filter(user=request.user)
+  comments = Comment.objects.all().filter(name=request.user)
   
-  context = {'profile': profile, 'posts': posts}
-  return render(request, 'blog/user.html', context = context)
+  context = {'profile': profile, 'posts': posts, 'comments':comments}
+  return render(request, 'blog/user.html', context)
 
+def delete_post(request, post_id = None):
+  post = Post.objects.get(id=post_id)
+  post.delete()
+  context = {'post':post}
+  return HttpResponseRedirect('user/')

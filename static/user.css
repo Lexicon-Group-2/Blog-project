@@ -131,3 +131,18 @@
 .author {
   font-size: 1.3rem;
 }
+
+.fa-trash-o {
+  width: 50px;
+  padding: 5px;
+  background: white;
+  border: 2px solid black;
+  color: rgb(84, 0, 0);
+  border-radius: 5px;
+  font-size: 1.7rem;
+}
+
+.fa-trash-o:hover {
+  background: rgb(109, 0, 0);
+  color: white;
+}

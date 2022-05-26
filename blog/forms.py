@@ -1,7 +1,7 @@
 from xml.etree.ElementTree import Comment
 from django import forms
 from django.contrib.auth.models import User
-from blog.models import UserProfileInfo, Comment
+from blog.models import Post, UserProfileInfo, Comment
 
 class UserForm(forms.Form, forms.ModelForm):
   password   = forms.CharField(widget=forms.PasswordInput())
@@ -19,3 +19,8 @@ class CommentForm(forms.ModelForm):
   class Meta():
     model = Comment
     fields = ['name', 'body']
+
+class PostForm(forms.ModelForm):
+  class Meta():
+    model = Post
+    fields = ['user', 'title', 'intro', 'body']

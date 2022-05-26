@@ -140,8 +140,8 @@ STATICFILES_DIRS = [
     ]
 
 # Media
-MEDIA_ROOT = MEDIA_DIR
 MEDIA_URL = '/media/'
+MEDIA_ROOT = MEDIA_DIR
 
 # Username
 # Email

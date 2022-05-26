@@ -6,7 +6,7 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.http import HttpResponse, HttpResponseRedirect
-from blog.models import Post, Comment
+from blog.models import Post, Comment, UserProfileInfo
 from django.urls import reverse
 #from numpy import true_divide
 
@@ -25,7 +25,7 @@ def register(request):
       user = user_form.save()
       user.set_password(user.password)
       user.save()
-
+      
       profile = profile_form.save(commit=False)
       profile.user = user
 
@@ -68,10 +68,6 @@ def user_login(request):
 
 
 @login_required
-def user(request):
-  return render(request, 'blog/user.html', {})
-
-@login_required
 def user_logout(request):
   logout(request)
   return HttpResponseRedirect(reverse('index'))
@@ -92,7 +88,7 @@ def post_detail(request, slug):
   name  = request.user
   body  = request.POST.get('body')
   user  = User.objects.get(id=name.id)
-  
+
   if request.method == 'POST':
     comment = Comment(post=post, name=name, body=body)
     comment.save()
@@ -102,3 +98,24 @@ def post_detail(request, slug):
     form = CommentForm()
     
   return render(request, 'blog/post_detail.html', {'post': post, 'form': form})
+
+
+
+
+
+# def users(request):
+#   users = User.objects.order_by('first_name')
+#   users_dict = {'access_records': users}
+#   return render(request, 'users/users.html', context = users_dict)
+
+@login_required
+def user(request):
+  profile = UserProfileInfo.objects.filter(user=request.user)
+  return render(request, 'blog/user.html', {'profile': profile})
+
+# def index(request):
+#   webpages_list = AccessRecord.objects.order_by('date')
+#   date_dict = {'access_records': webpages_list,
+#                'myString' : 'My Second App'}
+#   template = loader.get_template('index.html')
+#   return HttpResponse(template.render(context = date_dict))

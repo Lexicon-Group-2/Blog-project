@@ -1,17 +1,29 @@
 {% extends "blog/base.html" %}
 {% load staticfiles %}
-
-{% block title %}Profile Page{% endblock title %}
-
+{% block title %}{{user.username}}{% endblock title %}
 {% block body_block %}
 
-<div class="jumbotron">
-
-  <h1>Welcome back!</h1>
-  <br>
-  <h4>Your username: <b>{{user.username}}</b></h4>
-  <h4>Your email address: {{ user.email }}</h4>
-
-  
+<div class="profile-card">
+  <div class="profile-pic">
+    {% if request.user.userprofileinfo.profile_pic %}
+      <img src="{{request.user.userprofileinfo.profile_pic.url}}" alt="" />
+    {% else %}
+      <img src="/media/profile_pics/default.png" alt="" />
+    {% endif %}
+  </div>
+  <div class="welcome">Welcome back!</div>
+  <div class="user-data">User name: <b>{{user.username}}</b></div>
+  <div class="user-data">Email: <b>{{user.email}}</b></div>
 </div>
+
+<!-- A loop through each post that user has made -->
+<div class="posts-container">
+
+</div>
+
+<!-- A loop through each comment that user has made -->
+<div class="comments-container">
+
+</div>
+
 {% endblock %}

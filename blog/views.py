@@ -105,5 +105,8 @@ def post_detail(request, slug):
 @login_required
 def user(request):
   profile = UserProfileInfo.objects.filter(user=request.user)
-  return render(request, 'blog/user.html', {'profile': profile})
+  posts = Post.objects.all().filter(user=request.user)
+  
+  context = {'profile': profile, 'posts': posts}
+  return render(request, 'blog/user.html', context = context)
 

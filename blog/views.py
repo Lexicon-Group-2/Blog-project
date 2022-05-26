@@ -63,7 +63,7 @@ def user_login(request):
         return HttpResponse("Account not active")
     else:
       return HttpResponse("Invalid login details!")
-  
+
   return render(request, 'blog/login.html', {})
 
 
@@ -102,20 +102,8 @@ def post_detail(request, slug):
 
 
 
-
-# def users(request):
-#   users = User.objects.order_by('first_name')
-#   users_dict = {'access_records': users}
-#   return render(request, 'users/users.html', context = users_dict)
-
 @login_required
 def user(request):
   profile = UserProfileInfo.objects.filter(user=request.user)
   return render(request, 'blog/user.html', {'profile': profile})
 
-# def index(request):
-#   webpages_list = AccessRecord.objects.order_by('date')
-#   date_dict = {'access_records': webpages_list,
-#                'myString' : 'My Second App'}
-#   template = loader.get_template('index.html')
-#   return HttpResponse(template.render(context = date_dict))

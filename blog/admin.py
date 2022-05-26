@@ -10,7 +10,7 @@ class PostAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('title',)}
 
 class PostComment(admin.ModelAdmin):
-    list_display  = ('post', 'name', 'date_added')
+    list_display  = ('id', 'post', 'name', 'date_added')
     search_fields = ['name',]
 
 admin.site.register(UserProfileInfo)

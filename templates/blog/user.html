@@ -23,8 +23,9 @@
 </div>
 
 <!-- A loop through each post that user has made -->
-<h2 class="jumbotron">List of posts:</h2>
-{% for post in posts %}
+{% if posts.all %}
+  <h2 class="jumbotron">List of posts:</h2>
+  {% for post in posts %}
   <div class="post-container">
     <div class="post-image">
       {% if post.user.userprofileinfo.profile_pic %}
@@ -51,12 +52,48 @@
     <div class="post-intro">Intro: {{post.intro}}</div>
     <div class="post-link"><a href="{% url 'post_detail' post.slug %}">Read more</a></div>
   </div>
-{% endfor %}
+  {% endfor %}
+{% else %}
+  <h2 class="jumbotron">This user have no published posts.</h2>
+{% endif %}
+
+
 
 <!-- A loop through each comment that user has made -->
-<h2 class="jumbotron">List of comments:</h2>
-<div class="comments-container">
+{% if comments.all %}
+  <h2 class="jumbotron">List of comments:</h2>
+  {% for comment in comments %}
+  <h1>{{comment.unique_id}}</h1>
+  <div class="comment-container">
+    <div class="post-image">
+      {% if request.user.userprofileinfo.profile_pic %}
+      <img src="{{request.user.userprofileinfo.profile_pic.url}}" alt="" />
+      {% else %}
+      <img src="/media/profile_pics/default.png" alt="" />
+      {% endif %}
+    </div>
+    <div class="post-author"><i class="author">{{comment.name}}</i></div>
+    <div class="post-date">
+      <div>{{comment.date_added}}</div>
+      <div class="action">
+        <!-- update icon -->
+        <a href="">update</a>
+        <!-- delete icon -->
+        <a href="{% url 'delete_comment' comment.id %}">
+          <button class="btn btn-delete">
+            <i class="fa fa-trash-o"></i>
+          </button>
+        </a>
+      </div>
+    </div>
+    <div class="post-title"><i>{{comment.body}}</i></div>
+    <div class="post-intro"></div>
+    <div class="post-link"></div>
+  </div>
+  {% endfor %}
+{% else %}
+  <h2 class="jumbotron">This user have no published comments.</h2>
+{% endif %}
 
-</div>
 
 {% endblock %}

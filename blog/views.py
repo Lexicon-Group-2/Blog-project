@@ -8,13 +8,10 @@ from django.contrib.auth.models import User
 from django.http import HttpResponse, HttpResponseRedirect
 from blog.models import Post, Comment, UserProfileInfo
 from django.urls import reverse
-#from numpy import true_divide
 
-def index(request):
-  return render(request, 'blog/index.html')
+
 
 def register(request):
-
   registered = False
 
   if request.method == 'POST':
@@ -25,7 +22,7 @@ def register(request):
       user = user_form.save()
       user.set_password(user.password)
       user.save()
-      
+
       profile = profile_form.save(commit=False)
       profile.user = user
 
@@ -41,10 +38,12 @@ def register(request):
     profile_form = UserProfileInfoForm()
 
   return render(request, 'blog/registration.html',
-  {'user_form': user_form,
-    'profile_form': profile_form,
-    'registered': registered
-  })
+    {'user_form': user_form,
+      'profile_form': profile_form,
+      'registered': registered
+    })
+
+
 
 def user_login(request):
   if request.method == 'POST':
@@ -73,13 +72,17 @@ def user_logout(request):
   return HttpResponseRedirect(reverse('index'))
 
 
+def index(request):
+  return render(request, 'blog/index.html')
+
+
 def blog(request):
   posts = Post.objects.all()
   return render(request, 'blog/blog.html', {'posts': posts})
 
+
 def login_page(request):
   return render(request, 'blog/login.html')
-
 
 
 def post_detail(request, slug):
@@ -87,13 +90,12 @@ def post_detail(request, slug):
   post  = Post.objects.get(slug=slug)
   name  = request.user
   body  = request.POST.get('body')
-  user  = User.objects.get(id=name.id)
 
   if request.method == 'POST':
     comment = Comment(post=post, name=name, body=body)
     comment.save()
     return redirect('post_detail', slug=post.slug)
-    
+  
   else:
     form = CommentForm()
     
@@ -102,15 +104,23 @@ def post_detail(request, slug):
 
 @login_required
 def user(request):
-  profile = UserProfileInfo.objects.filter(user=request.user)
-  posts = Post.objects.all().filter(user=request.user)
   comments = Comment.objects.all().filter(name=request.user)
+  profile  = UserProfileInfo.objects.filter(user=request.user)
+  posts    = Post.objects.all().filter(user=request.user)
   
-  context = {'profile': profile, 'posts': posts, 'comments':comments}
+  context = {'profile': profile, 'posts': posts, 'comments': comments}
   return render(request, 'blog/user.html', context)
+
+
 
 def delete_post(request, post_id = None):
   post = Post.objects.get(id=post_id)
   post.delete()
-  context = {'post':post}
+  return HttpResponseRedirect('user/')
+
+
+def delete_comment(request, id):
+  comment = Comment.objects.get(id=id)
+  comment.delete()
+  
   return HttpResponseRedirect('user/')

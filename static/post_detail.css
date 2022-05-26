@@ -81,4 +81,27 @@
   cursor: pointer;
 }
 
+
+.comment-container {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "post-image post-author post-author post-author post-date post-date post-date"
+    "post-image post-title post-title post-title post-title post-title post-title";
+  background: rgb(255, 255, 255);
+  padding: 15px;
+  font-size: 1.3rem;
+  min-width: 750px;
+  margin: 0 auto 15px auto;
+  width: 70%;
+  border: 2px solid grey;
+  border-radius: 15px;
+  box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.3),
+    -5px 5px 20px rgba(0, 0, 0, 0.3);
+}
+
+
 /* END STYLE */

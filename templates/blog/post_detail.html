@@ -1,10 +1,17 @@
-{% extends "blog/base.html" %} {% load staticfiles %} {% block body_block %}
+{% extends "blog/base.html" %}
+{% load staticfiles %}
 
+{% block head_block %}
+<link rel="stylesheet" href="{% static 'user.css' %}">
 <link rel="stylesheet" href="{% static 'post_detail.css' %}">
+{% endblock %}
 
-<div class="container">
-  <div class="post block">
-    <h2 class="post-author">Author: {{post.user}}</h2>
+
+{% block body_block %}
+
+<div class="blog-container">
+  <div class="blog-block">
+    <h2 class="blog-author">Author: {{post.user}}</h2>
     <h2 class="subtitle">Title: {{post.title}}</h2>
     <h4>Date added: {{post.date_added}}</h4>
     <h4>Intro: {{post.intro}}</h4>
@@ -37,8 +44,8 @@
               disabled
               placeholder="Enter your name"
             />
-    
-    
+            
+            
             <br />
             <label class="comment-label" for="body">Comment:</label>
             <textarea class="comment-field"
@@ -61,19 +68,36 @@
 </div>
 
 <br />
+{% if post.comments.all %}
+  <h2 class="jumbotron">List of comments:</h2>
+{% else %}
+  <h2 class="no-comments-yet">This post have no comments.</h2>
+  <hr />
+{% endif %}
+
 {% for comment in post.comments.all %}
-<div class="comment">
-  <div class="comment-counter">{{forloop.counter}}</div>
-  <div class="comment-user">{{comment.name}}</div>
-  <div class="comment-user">{{comment.date_added}}</div>
-  <div class="comment-body">{{comment.body}}</div>
-</div>
-<hr />
-{% empty %}
-<h2 class="no-comments-yet">This post have no comments.</h2>
-<hr />
+  <div class="comment-container">
+    <div class="post-image">
+      {% if comment.name.userprofileinfo.profile_pic %}
+        <img src="{{comment.name.userprofileinfo.profile_pic.url}}" alt="" />
+      {% else %}
+        <img src="/media/profile_pics/default.png" alt="" />
+      {% endif %}
+    </div>
+    <div class="post-author">
+      <i class="author"><b>{{comment.name}}</b></i>
+    </div>
+    <div class="post-date">
+      <div>{{comment.date_added}}</div>
+      <div class="action"></div>
+    </div>
+    <div class="post-title">
+      <i>{{comment.body}}</i>
+    </div>
+    <div class="post-intro"></div>
+    <div class="post-link"></div>
+  </div>
 {% endfor %}
 
 <script src="{% static '/script.js' %}"></script>
 {% endblock %}
-</div>

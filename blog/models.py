@@ -1,8 +1,14 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils.crypto import get_random_string
 
 # Create your models here.
+import random
+import string
 
+def random_string_generator(str_size):
+  allowed_chars = string.ascii_letters
+  return ''.join(random.choice(allowed_chars) for x in range(str_size))
 
 class UserProfileInfo(models.Model):
   user = models.OneToOneField(User, on_delete = models.CASCADE, help_text=False)
@@ -37,4 +43,3 @@ class Comment(models.Model):
   
   class Meta:
       ordering = ['-date_added']
-  

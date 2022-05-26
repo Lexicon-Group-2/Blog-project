@@ -17,7 +17,6 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
-
 from blog import views
 
 urlpatterns = [
@@ -32,7 +31,8 @@ urlpatterns = [
     path('blog/', views.blog, name="blog"),
     path('<slug:slug>/', views.post_detail, name="post_detail"),
     path('<post_id>',views.delete_post,name='delete_post'),
+    path('/<int:id>',views.delete_comment,name='delete_comment'),
 ]
 
-
+# this part is for user profile pictures
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

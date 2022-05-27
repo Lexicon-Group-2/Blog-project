@@ -75,7 +75,7 @@
   width: 94%;
   font-size: 1.4rem;
   cursor: not-allowed;
-  background: rgba(1, 1, 1, 0.4);
+  background: linear-gradient(to right, #333399, #ff00cc);
   color: white;
 }
 

@@ -25,13 +25,14 @@ urlpatterns = [
     path('user/', views.user, name='user'),
     path('admin/', admin.site.urls),
     path('logout/', views.user_logout, name="logout"),
-    path('special/', views.user_logout, name="special"),
     path('login/', views.user_login, name="user_login"),
     path('login/', views.login_page, name="login_page"),
     path('blog/', views.blog, name="blog"),
     path('<slug:slug>/', views.post_detail, name="post_detail"),
     path('<post_id>',views.delete_post,name='delete_post'),
     path('/<int:id>',views.delete_comment,name='delete_comment'),
+    path('<int:id>',views.update_post,name='update_post'),
+    path('write_post/',views.write_post,name='write_post'),
 ]
 
 # this part is for user profile pictures

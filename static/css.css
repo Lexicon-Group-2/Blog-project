@@ -120,6 +120,12 @@ a {
 .padding-bottom--15 {
   padding-bottom: 15px;
 }
+.padding-bottom--30 {
+  padding-bottom: 30px;
+}
+.padding-horizontal--5 {
+  padding: 20px 5px 20px 5px;
+}
 
 .flex-justifyContent--center {
   -ms-flex-pack: center;

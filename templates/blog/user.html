@@ -22,30 +22,6 @@
 
 <!-- A loop through each post that user has made -->
 {% if posts.all %}
-<<<<<<< HEAD
-<h2 class="jumbotron">List of posts:</h2>
-{% for post in posts %}
-<div class="post-container">
-  <div class="post-image">
-    {% if post.user.userprofileinfo.profile_pic %}
-    <img src="{{request.user.userprofileinfo.profile_pic.url}}" alt="" />
-    {% else %}
-    <img src="/media/profile_pics/default.png" alt="" />
-    {% endif %}
-  </div>
-  <div class="post-author">Author: <i class="author">{{post.user}}</i></div>
-  <div class="post-date">
-    <div>{{post.date_added}}</div>
-    <div class="action">
-      <!-- update icon -->
-      <a href="{% url 'update_post' post.id %}">update</a>
-      <!-- delete icon -->
-      <a href="{% url 'delete_post' post.id %}">
-        <button class="btn btn-delete">
-          <i class="fa fa-trash-o"></i>
-        </button>
-      </a>
-=======
   <h2 class="jumbotron">List of posts:</h2>
   {% for post in posts %}
   <div class="post-container">
@@ -69,7 +45,6 @@
           </button>
         </a>
       </div>
->>>>>>> eebe70ff6f0a74ab335667407f4fc068af8e54bb
     </div>
   </div>
   <div class="post-title">Title: <i>{{post.title}}</i></div>

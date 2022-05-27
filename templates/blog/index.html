@@ -1,7 +1,21 @@
-{% extends "blog/base.html" %} {% block body_block %}
+{% extends "blog/base.html" %} {% load staticfiles %} {% block body_block %}
 
 <div class="website-title">
-  <h1>Index page</h1>
+  <h1>My Blog website</h1>
+
+  <div>
+    {% load static %}
+    <img
+      src="{% static 'images/background.png' %}"
+      width="300px"
+      alt="Can't find the image."
+    />
+  </div>
+  <small
+    >Every time you post something online, you have a choice. You can either
+    make it something that adds to the happiness levels in the world—or you can
+    make it something that takes away. ~Zoe Sugg</small
+  >
 </div>
 
 {% endblock %}

@@ -1,13 +1,33 @@
 /* User profile page */
+div {
+  color: white;
+  font: normal 100% / normal Arial, Helvetica, sans-serif;
+  letter-spacing: 1px;
+  transition: all 0.5s ease;
+  font-size: 16px;
+}
+.website-title {
+  margin: 30px 0 20px 0;
+  padding: 20px;
+  color: white;
+  font: normal 100% / normal Arial, Helvetica, sans-serif;
+  letter-spacing: 1px;
+  transition: all 0.5s ease;
+  text-transform: uppercase;
+  text-align: center;
+  font-size: 2rem;
+  text-decoration: none;
+}
 .profile-card {
   margin: 30px 0 20px 0;
   width: 300px;
-  background: rgb(241, 244, 246);
+  background: rgba(0, 0, 0, 0.4);
   padding: 20px;
   border-radius: 10px;
-  font-size: 1.1rem;
-  box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.3),
-    -5px 5px 20px rgba(0, 0, 0, 0.3);
+  font-size: 1rem;
+  box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.3), -5px 5px 20px rgba(0, 0, 0, 0.3);
+  -o-text-overflow: clip;
+  text-overflow: clip;
 }
 
 .profile-pic {
@@ -47,8 +67,6 @@
   width: 100%;
 }
 
-
-
 .post-container {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
@@ -59,16 +77,12 @@
     "post-image post-author post-author post-author post-date post-date post-date"
     "post-image post-title post-title post-title post-date post-date post-date"
     "post-image post-intro post-intro post-intro post-intro post-intro post-link";
-  background: rgb(255, 255, 255);
+  background: rgba(0, 0, 0, 0.4);
   padding: 15px;
   font-size: 1.3rem;
   min-width: 750px;
   margin: 0 auto 15px auto;
   width: 70%;
-  border: 2px solid grey;
-  border-radius: 15px;
-  box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.3),
-  -5px 5px 20px rgba(0, 0, 0, 0.3);
 }
 
 .post-image {
@@ -92,7 +106,6 @@
   padding: 20px;
   margin-top: 50px;
 }
-
 
 .post-author {
   justify-self: start;
@@ -147,26 +160,19 @@
   color: white;
 }
 
-
-
-
 .comment-container {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  
+
   gap: 0px 0px;
   grid-auto-flow: row;
   grid-template-areas:
     "post-image post-author post-author post-author post-date post-date post-date"
     "post-image post-title post-title post-title post-date post-date post-date";
-  background: rgb(255, 255, 255);
+  background: rgba(0, 0, 0, 0.4);
   padding: 15px;
   font-size: 1.3rem;
   min-width: 750px;
   margin: 0 auto 15px auto;
   width: 70%;
-  border: 2px solid grey;
-  border-radius: 15px;
-  box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.3),
-    -5px 5px 20px rgba(0, 0, 0, 0.3);
 }

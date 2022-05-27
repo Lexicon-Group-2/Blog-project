@@ -1,11 +1,10 @@
-
 /* STYLE post_detail.html */
 .show-hide-comment-form {
   width: 200px;
   font-size: 1.2rem;
   color: black;
   padding: 10px;
-  background: palegreen;
+  background: rgba(0, 0, 0, 0.4);
   border: 1px solid grey;
   border-radius: 5px;
 }
@@ -76,11 +75,10 @@
 }
 
 .submit-comment:hover:enabled {
-  background: palegreen;
+  background: rgba(0, 0, 0, 0.2);
   color: black;
   cursor: pointer;
 }
-
 
 .comment-container {
   display: grid;
@@ -91,17 +89,16 @@
   grid-template-areas:
     "post-image post-author post-author post-author post-date post-date post-date"
     "post-image post-title post-title post-title post-title post-title post-title";
-  background: rgb(255, 255, 255);
+  background: rgba(0, 0, 0, 0.4);
   padding: 15px;
   font-size: 1.3rem;
   min-width: 750px;
   margin: 0 auto 15px auto;
   width: 70%;
-  border: 2px solid grey;
-  border-radius: 15px;
-  box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.3),
-    -5px 5px 20px rgba(0, 0, 0, 0.3);
-}
 
+  border-radius: 15px;
+  box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.3), -5px 5px 20px rgba(0, 0, 0, 0.3);
+  color: white;
+}
 
 /* END STYLE */

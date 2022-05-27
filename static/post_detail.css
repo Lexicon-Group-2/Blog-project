@@ -1,4 +1,7 @@
 /* STYLE post_detail.html */
+* {
+  color: white;
+}
 .show-hide-comment-form {
   width: 200px;
   font-size: 1.2rem;

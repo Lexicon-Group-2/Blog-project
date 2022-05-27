@@ -3,8 +3,56 @@ page{% endblock title %} {% block head_block %}
 <link rel="stylesheet" href="{% static 'user.css' %}" />
 {% endblock %} {% block body_block %}
 
+  <link rel="stylesheet" href="{% static 'user.css' %}">
+  <link rel="stylesheet" href="{% static 'post_detail.css' %}">
+
 <h1 class="website-title">my blog website</h1>
 <!-- Input form for blog posts. -->
+
+    {% if user.is_authenticated %}
+    <button style="margin-bottom: 20px;" class="btn btn-success show-hide-comment-form" onclick="showHideForm()">
+      
+      Write a post
+    </button>
+    
+    <div id="#comment-form" class="comment-form" style="display: none;">
+      <div class="form-container">
+        <div class="formbg-outer">
+          <div class="formbg">
+            <div class="formbg-inner padding-horizontal--15">
+              <span class="padding-bottom--30 add-a-comment">Write a post</span>
+              
+              <form method="POST" enctype="multipart/form-data" id="stripe-login">
+                <div class="padding-bottom--24 field">
+                  {% csrf_token %}
+                  <label for="username">User name:</label>
+                  <input type="text" name="username" value="{{user.username}}" disabled placeholder="Enter your name"/><br/>
+
+                  <label for="post-title">Post title:</label>
+                  <input type="text" name="post-title" placeholder="Enter a title"/><br />
+
+                  <label for="post-intro">Post Intro:</label>
+                  <input type="text" name="post-intro" placeholder="A short introduction" /><br />
+
+                  <label for="post-body">Post:</label>
+                  <textarea id="post-body" placeholder="Main body for the post." name="post-body" rows="6" cols="50"></textarea>
+
+                </div>
+                <button class="btn btn-success submit-comment" onclick="hideForm()">
+                  Publish
+                </button>
+            </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  {% else %}
+    <div style="margin-bottom: 20px;" class="btn btn-success show-hide-comment-form">
+      Login to write a post
+    </div>
+  {% endif %}
+  
 {% for post in posts %}
 <div class="post-container">
   <div class="post-image">
@@ -31,4 +79,6 @@ page{% endblock title %} {% block head_block %}
     {% endif %}
   </div>
 </div>
-{% endfor %} {% endblock %}
+{% endfor %}
+<script src="{% static '/blog.js' %}"></script>
+{% endblock %}

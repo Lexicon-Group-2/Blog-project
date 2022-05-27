@@ -5,14 +5,17 @@
   href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
 />
 <link rel="stylesheet" href="{% static 'user.css' %}" />
-{% endblock %} {% block body_block %}
+{% endblock %}
+
+
+{% block body_block %}
 
 <div class="profile-card">
   <div class="profile-pic">
     {% if request.user.userprofileinfo.profile_pic %}
-    <img src="{{request.user.userprofileinfo.profile_pic.url}}" alt="" />
+      <img src="{{request.user.userprofileinfo.profile_pic.url}}" alt="" />
     {% else %}
-    <img src="/media/profile_pics/default.png" alt="" />
+      <img src="/media/profile_pics/default.png" alt="" />
     {% endif %}
   </div>
   <div class="welcome">Welcome back!</div>
@@ -46,48 +49,52 @@
         </a>
       </div>
     </div>
+    <div class="post-title">Title: <i>{{post.title}}</i></div>
+    <div class="post-intro">Intro: {{post.intro}}</div>
+    <div class="post-link"><a href="{% url 'post_detail' post.slug %}">Read more</a></div>
   </div>
-  <div class="post-title">Title: <i>{{post.title}}</i></div>
-  <div class="post-intro">Intro: {{post.intro}}</div>
-  <div class="post-link">
-    <a href="{% url 'post_detail' post.slug %}">Read more</a>
-  </div>
-</div>
-{% endfor %} {% else %}
-<h2 class="website-title">This user have no published posts.</h2>
+  {% endfor %}
+{% else %}
+  <h2 class="jumbotron">This user have no published posts.</h2>
 {% endif %}
+
+
 
 <!-- A loop through each comment that user has made -->
 {% if comments.all %}
-<h2 class="jumbotron">List of comments:</h2>
-{% for comment in comments %}
-<h1>{{comment.unique_id}}</h1>
-<div class="comment-container">
-  <div class="post-image">
-    {% if request.user.userprofileinfo.profile_pic %}
-    <img src="{{request.user.userprofileinfo.profile_pic.url}}" alt="" />
-    {% else %}
-    <img src="/media/profile_pics/default.png" alt="" />
-    {% endif %}
-  </div>
-  <div class="post-author"><i class="author">{{comment.name}}</i></div>
-  <div class="post-date">
-    <div>{{comment.date_added}}</div>
-    <div class="action">
-      <!-- update icon -->
-      <a href="">update</a>
-      <!-- delete icon -->
-      <a href="{% url 'delete_comment' comment.id %}">
-        <button class="btn btn-delete">
-          <i class="fa fa-trash-o"></i>
-        </button>
-      </a>
+  <h2 class="jumbotron">List of comments:</h2>
+  {% for comment in comments %}
+  <h1>{{comment.unique_id}}</h1>
+  <div class="comment-container">
+    <div class="post-image">
+      {% if request.user.userprofileinfo.profile_pic %}
+      <img src="{{request.user.userprofileinfo.profile_pic.url}}" alt="" />
+      {% else %}
+      <img src="/media/profile_pics/default.png" alt="" />
+      {% endif %}
     </div>
+    <div class="post-author"><i class="author">{{comment.name}}</i></div>
+    <div class="post-date">
+      <div>{{comment.date_added}}</div>
+      <div class="action">
+        <!-- update icon -->
+        <a href="">update</a>
+        <!-- delete icon -->
+        <a href="{% url 'delete_comment' comment.id %}">
+          <button class="btn btn-delete">
+            <i class="fa fa-trash-o"></i>
+          </button>
+        </a>
+      </div>
+    </div>
+    <div class="post-title"><i>{{comment.body}}</i></div>
+    <div class="post-intro"></div>
+    <div class="post-link"></div>
   </div>
-  <div class="post-title"><i>{{comment.body}}</i></div>
-  <div class="post-intro"></div>
-  <div class="post-link"></div>
-</div>
-{% endfor %} {% else %}
-<h2 class="website-title">This user have no published comments.</h2>
-{% endif %} {% endblock %}
+  {% endfor %}
+{% else %}
+  <h2 class="jumbotron">This user have no published comments.</h2>
+{% endif %}
+
+
+{% endblock %}

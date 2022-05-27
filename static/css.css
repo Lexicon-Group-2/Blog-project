@@ -31,6 +31,7 @@ body {
 }
 h1 {
   letter-spacing: -1px;
+  color: black;
 }
 a {
   color: #5469d4;
@@ -142,12 +143,14 @@ span {
 }
 label {
   margin-bottom: 10px;
+  color: black;
 }
 .reset-pass a,
 label {
   font-size: 14px;
   font-weight: 600;
   display: block;
+  color: black;
 }
 .reset-pass > a {
   text-align: right;
@@ -173,6 +176,7 @@ label {
     rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(60, 66, 87, 0.16) 0px 0px 0px 1px,
     rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px,
     rgba(0, 0, 0, 0) 0px 0px 0px 0px;
+  color: black;
 }
 
 input[type="submit"] {
@@ -184,6 +188,7 @@ input[type="submit"] {
   color: #fff;
   font-weight: 600;
   cursor: pointer;
+  color: black;
 }
 .field-checkbox input {
   width: 20px;

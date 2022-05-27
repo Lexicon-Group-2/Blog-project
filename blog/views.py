@@ -78,6 +78,17 @@ def index(request):
 
 def blog(request):
   posts = Post.objects.all()
+
+  if request.method == 'POST':
+    user = request.user
+    title = request.POST.get('post-title')
+    slug = title.replace(" ","-").replace(",","")
+    intro = request.POST.get('post-intro')
+    body = request.POST.get('post-body')
+    comment = Post(user=user, title=title, slug=slug, intro=intro, body=body)
+    comment.save()
+    return render(request, 'blog/blog.html', {'posts': posts})
+
   return render(request, 'blog/blog.html', {'posts': posts})
 
 
@@ -122,5 +133,25 @@ def delete_post(request, post_id = None):
 def delete_comment(request, id):
   comment = Comment.objects.get(id=id)
   comment.delete()
-  
   return HttpResponseRedirect('user/')
+
+
+
+def write_post(request):
+  return render(request, 'blog/write_post.html')
+
+
+
+def update_post(request, id):
+  post = Post.objects.get(id=id)
+  
+  form = Post(request.POST, instance=post)
+  if form.is_valid():
+    obj = form.save(commit = False)
+    obj.save()
+    context = {'form': form}
+    return render(request, 'blog/update_post.html', context)
+  
+  else:
+    context= {'form': form}
+    return render(request, 'blog/update_post.html', context)

@@ -39,7 +39,7 @@
       <div>{{post.date_added}}</div>
       <div class="action">
         <!-- update icon -->
-        <a href="">update</a>
+        <a href="{% url 'update_post' post.id %}">update</a>
         <!-- delete icon -->
         <a href="{% url 'delete_post' post.id %}">
           <button class="btn btn-delete">
